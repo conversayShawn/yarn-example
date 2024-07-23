@@ -1,0 +1,30 @@
+name: Run Cypress Tests with Debugging Logs
+
+on: push
+
+jobs:
+  cypress-run:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        containers: [1, 2, 3]
+        
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Cypress run
+        uses: cypress-io/github-action@v6
+        with:
+          record: true
+          parallel: true
+        env:
+          CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
+          CYPRESS_PROJECT_ID: ${{ secrets.CYPRESS_PROJECT_ID }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        #   DEBUG: 'cypress:*'
+    #   - name: Cypress tests with debug logs
+    #     uses: cypress-io/github-action@v6
+    #     env:
+    #       DEBUG: 'cypress:*'
