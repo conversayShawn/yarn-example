@@ -14,6 +14,12 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
+      - name: Install Yarn dependencies
+        run: yarn install
+
+      - name: Install Cypress A11y Results API
+        run: npm install --force https://cdn.cypress.io/extract-cloud-results/v1/extract-cloud-results.tgz
+
       - name: Cypress run
         uses: cypress-io/github-action@v6
         with:
