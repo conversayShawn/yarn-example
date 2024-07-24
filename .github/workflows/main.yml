@@ -3,6 +3,11 @@ name: My Cypress Test Suite with A11y Results API
 on:
   push:
 
+env:
+  CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
+  CYPRESS_PROJECT_ID: ${{ secrets.CYPRESS_PROJECT_ID }}
+  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
 jobs:
   cypress-run:
     runs-on: ubuntu-latest
@@ -22,10 +27,6 @@ jobs:
         uses: cypress-io/github-action@v6
         with:
           command: yarn cypress run --record --parallel --tag "a11y"
-        env:
-          CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
-          CYPRESS_PROJECT_ID: ${{ secrets.CYPRESS_PROJECT_ID }}
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Wait for Results Processing
         run: sleep 2m # Wait 2 mins before running this script
@@ -35,6 +36,3 @@ jobs:
 
       - name: Fetch Accessibility Results
         run: node ./scripts/verifyAccessibilityResults.js
-        env:
-          CYPRESS_PROJECT_ID: ${{ secrets.CYPRESS_PROJECT_ID }}
-          CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
