@@ -3,7 +3,7 @@ const { getAccessibilityResults } = require('@cypress/extract-cloud-results');
 getAccessibilityResults({
   projectId: process.env.CYPRESS_PROJECT_ID,
   recordKey: process.env.CYPRESS_RECORD_KEY,
-  runTags: [process.env.RUN_TAGS],
+  runTags: process.env.RUN_TAGS,
 }).then((results) => {
   const { runNumber, accessibilityReportUrl, summary, rules } = results;
   const { total } = summary.violationCounts;
