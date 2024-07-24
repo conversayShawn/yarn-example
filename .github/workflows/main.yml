@@ -20,13 +20,15 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
+      # This will install deps from your yarn.lock file  
       - name: Install Yarn dependencies
         run: yarn install
 
-      - name: Run Cypress Tests
+      - name: Cypress Run
         uses: cypress-io/github-action@v6
         with:
-          command: yarn cypress run --record --parallel --tag "a11y"
+          record: true
+          parallel: true
 
       - name: Wait for Results Processing
         run: sleep 2m # Wait 2 mins before running this script
