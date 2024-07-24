@@ -3,7 +3,6 @@ const { getAccessibilityResults } = require('@cypress/extract-cloud-results');
 getAccessibilityResults({
   projectId: process.env.CYPRESS_PROJECT_ID,
   recordKey: process.env.CYPRESS_RECORD_KEY,
-  // runTags: [String(process.env.RUN_TAGS)],
   runTags: "a11y",
 }).then((results) => {
   const { runNumber, accessibilityReportUrl, summary, rules } = results;
