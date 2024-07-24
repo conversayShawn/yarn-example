@@ -16,9 +16,7 @@ jobs:
       - name: Run Cypress Tests
         uses: cypress-io/github-action@v6
         with:
-          record: true
-          parallel: true
-          command: npx cypress run --record --tag "a11y"
+          command: yarn cypress run --record --parallel --tag "a11y"
         env:
           CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
           CYPRESS_PROJECT_ID: ${{ secrets.CYPRESS_PROJECT_ID }}
