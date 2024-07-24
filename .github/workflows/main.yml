@@ -23,7 +23,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Wait for Results Processing
-        run: sleep 5m # Wait 5 mins before runnnig this script
+        run: sleep 2m # Wait 2 mins before runnnig this script
 
       - name: Install Cypress A11y Results API
         run: npm install --force https://cdn.cypress.io/extract-cloud-results/v1/extract-cloud-results.tgz
