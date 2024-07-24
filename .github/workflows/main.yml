@@ -1,4 +1,4 @@
-name: Run Cypress Tests with Debugging Logs
+name: My Cypress Test Suite with A11y Results API
 
 on: push
 
@@ -14,9 +14,11 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
+      # This is not necessary, but is more of a best practice
       - name: Install Yarn dependencies
         run: yarn install
 
+      # This will install the Cypress A11y Results API
       - name: Install Cypress A11y Results API
         run: npm install --force https://cdn.cypress.io/extract-cloud-results/v1/extract-cloud-results.tgz
 
@@ -29,8 +31,3 @@ jobs:
           CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
           CYPRESS_PROJECT_ID: ${{ secrets.CYPRESS_PROJECT_ID }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        #   DEBUG: 'cypress:*'
-    #   - name: Cypress tests with debug logs
-    #     uses: cypress-io/github-action@v6
-    #     env:
-    #       DEBUG: 'cypress:*'
