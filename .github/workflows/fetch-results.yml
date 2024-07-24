@@ -17,7 +17,7 @@ jobs:
         run: npm install --force https://cdn.cypress.io/extract-cloud-results/v1/extract-cloud-results.tgz
 
       - name: Wait for Results Processing
-        run: sleep 300 # Wait 5 mins before runnnig this script
+        run: sleep 5m # Wait 5 mins before runnnig this script
 
       - name: Fetch Accessibility Results
         run: node ./scripts/verifyAccessibilityResults.js
